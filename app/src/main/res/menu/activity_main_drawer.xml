@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/customer">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_home"
+                    android:icon="@drawable/homecolor_24px"
+                    android:title="@string/menu_home" />
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/user_group_man_womancolor_24px"
+                    android:title="@string/menu_profile" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/products">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_products"
+                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:title="@string/menu_products" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/cart">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_cart"
+                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:title="@string/menu_cart" />
+                <item
+                    android:id="@+id/nav_today_order"
+                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:title="@string/menu_today_orders" />
+                <item
+                    android:id="@+id/nav_myorder"
+                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:title="@string/menu_my_orders" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/additional">
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_term_and_condition"
+                    android:icon="@drawable/ic_term_and_conditions"
+                    android:title="@string/tnc" />
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:icon="@drawable/ic_feedback"
+                    android:title="@string/feedback" />
+            </group>
+        </menu>
+    </item>
+</menu>

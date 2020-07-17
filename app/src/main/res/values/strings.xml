@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">MJBI</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_products">Products</string>
+    <string name="menu_cart">My Cart</string>
+    <string name="menu_today_orders">Today Orders</string>
+    <string name="menu_my_orders">My Orders</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="customer">Customer</string>
+    <string name="products">Products</string>
+    <string name="cart">Cart</string>
+    <string name="additional">Extra</string>
+    <string name="tnc">Terms and Condition</string>
+    <string name="feedback">Feedback</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="icon">icon</string>
+    <string name="otp">OTP</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="submit">Submit</string>
+    <string name="email">Email ID</string>
+    <string name="enter_registerd_email">Please enter your registered Email address</string>
+    <string name="search_here">Search Here</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_a_account_sign_up">Dont have a account? Sign up</string>
+    <string name="title_activity_bottomnav">BottomnavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_products">Products</string>
+    <string name="title_about">About</string>
+    <string name="background">Image Background</string>
+    <string name="logo">Logo</string>
+    <string name="new_password_string">Enter a new Password</string>
+    <string name="enter_registered_email">Enter Registered Email</string>
+</resources>
