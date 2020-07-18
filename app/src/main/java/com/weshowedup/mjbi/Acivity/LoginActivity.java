@@ -1,10 +1,6 @@
 package com.weshowedup.mjbi.Acivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +10,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -52,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.login_email);
         password = findViewById(R.id.login_pass);
         remember = findViewById(R.id.remember_me);
-        progressBarLogin=findViewById(R.id.progress_login);
+        progressBarLogin = findViewById(R.id.progress_login);
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -67,88 +65,70 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (String.valueOf(email.getText()).trim().isEmpty() || !String.valueOf(email.getText()).trim().matches(emailPattern) || String.valueOf(password.getText()).trim().isEmpty()) {
-                    loginButton.setVisibility(View.INVISIBLE);
-                } else
-                    loginButton.setVisibility(View.VISIBLE);
+                if (String.valueOf(email.getText()).trim().isEmpty() || String.valueOf(password).trim().isEmpty() || !String.valueOf(email.getText()).trim().matches(emailPattern)) {
+                    loginButton.setEnabled(false);
+                } else {
+                    loginButton.setEnabled(true);
+                }
             }
         };
-        loginButton.setVisibility(View.INVISIBLE);
+        sharedPrefManager = new SharedPrefManager(this);
         email.addTextChangedListener(textWatcher);
         password.addTextChangedListener(textWatcher);
+        loginButton.setEnabled(false);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login(String.valueOf(email.getText()).trim(), String.valueOf(password.getText()).trim());
-            }
-        });
-
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class));
-            }
-        });
-
-        //Sign Up Intent
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity();
+                progressBarLogin.setVisibility(View.VISIBLE);
+                loginButton.setEnabled(false);
+                login(String.valueOf(email.getText()).trim(),String.valueOf(password.getText()).trim());
             }
         });
     }
 
-    public void startActivity() {
-        Intent i = new Intent(LoginActivity.this, SignupActivity.class);
-        if (Build.VERSION.SDK_INT > 20) {
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(this);
-            startActivity(i, options.toBundle());
-        } else {
-            startActivity(i);
-        }
-    }
-
-    public void login(String emailL, String passwordL) {
-        progressBarLogin.setVisibility(View.VISIBLE);
-        try {
-            Call<LoginResponse> call = new RetrofitClass().retrofit().login(emailL, passwordL, device_token);
-            call.enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    if (response.body() != null) {
-                        if (response.body().getStatus()) {
-                            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                            intent.putExtra("id", response.body().getData().getId());
-                            intent.putExtra("name", response.body().getData().getName());
-                            intent.putExtra("email", response.body().getData().getEmail());
-                            sharedPrefManager.putString(getApplicationContext(), "id", response.body().getData().getId());
-                            sharedPrefManager.putString(getApplicationContext(), "device_token", device_token);
-                            if (remember.isChecked()){
-                                sharedPrefManager.putString(getApplicationContext(),"email",response.body().getData().getEmail());
-                                sharedPrefManager.putString(getApplicationContext(),"password",passwordL);
-                                sharedPrefManager.putString(getApplicationContext(),"name",response.body().getData().getName());
-                            }
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            progressBarLogin.setVisibility(View.INVISIBLE);
-
-                            Snackbar.make(getWindow().getDecorView(), response.body().getMessage(), Snackbar.LENGTH_SHORT).show();
+    public void login(String usernameL, String passwordL) {
+        Call<LoginResponse> call = new RetrofitClass().retrofit().login(usernameL, passwordL, device_token);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                progressBarLogin.setVisibility(View.INVISIBLE);
+                if (response.body() != null) {
+                    if (response.body().getStatus()) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("name", response.body().getData().getName());
+                        intent.putExtra("email", response.body().getData().getEmail());
+                        intent.putExtra("id", response.body().getData().getId());
+                        sharedPrefManager.putString(getApplicationContext(), "id", response.body().getData().getId());
+                        sharedPrefManager.putString(getApplicationContext(), "device_token", device_token);
+                        if (remember.isChecked()) {
+                            sharedPrefManager.putString(getApplicationContext(), "email", response.body().getData().getEmail());
+                            sharedPrefManager.putString(getApplicationContext(), "password", passwordL);
+                            sharedPrefManager.putString(getApplicationContext(), "name", response.body().getData().getName());
                         }
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                        progressBarLogin.setVisibility(View.INVISIBLE);
+                        loginButton.setEnabled(false);
+                        Snackbar.make(getWindow().getDecorView(),response.body().getMessage(),Snackbar.LENGTH_SHORT).show();
                     }
                 }
-
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    progressBarLogin.setVisibility(View.GONE);
-                    Log.d(TAG, "onFailure: " + t.getMessage());
-                    Snackbar.make(getWindow().getDecorView(), "Connection Fail Try Again", Snackbar.LENGTH_SHORT).show();
+                else {
+                    progressBarLogin.setVisibility(View.INVISIBLE);
+                    loginButton.setEnabled(true);
+                    Snackbar.make(getWindow().getDecorView(), "Email does not Exists", Snackbar.LENGTH_SHORT).show();
                 }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                progressBarLogin.setVisibility(View.INVISIBLE);
+                loginButton.setEnabled(true);
+                Log.d("error", "onFailure: " + t.getMessage());
+                Snackbar.make(getWindow().getDecorView(),"Try Again",Snackbar.LENGTH_SHORT).show();
+            }
+        });
     }
+
 }
