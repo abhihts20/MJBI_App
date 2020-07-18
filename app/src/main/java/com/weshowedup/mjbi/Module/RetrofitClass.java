@@ -12,7 +12,7 @@ public class RetrofitClass {
             .connectTimeout(180, TimeUnit.SECONDS)
             .build();
 
-    private LoginInterface retrofit() {
+    public LoginInterface retrofit() {
         Retrofit retrofit = new Retrofit
                 .Builder()
                 .baseUrl(LoginInterface.BASE_URL)
