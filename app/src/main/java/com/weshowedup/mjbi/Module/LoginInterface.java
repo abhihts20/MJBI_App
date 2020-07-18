@@ -9,7 +9,7 @@ import retrofit2.http.POST;
 
 public interface LoginInterface {
 
-    String BASE_URL = "http://192.168.43.24/mjbiotechindustries/index.php/api/";
+    String BASE_URL = "http://192.168.255.160/mjbiotechindustries/index.php/api/";
 
     @FormUrlEncoded
     @POST("users/login")

@@ -20,6 +20,7 @@ public class SignupActivity extends AppCompatActivity {
         setAnimation();
         setContentView(R.layout.activity_signup);
         Objects.requireNonNull(getSupportActionBar()).hide();
+
     }
 
     public void setAnimation() {
