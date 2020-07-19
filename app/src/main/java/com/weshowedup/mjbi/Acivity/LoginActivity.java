@@ -84,6 +84,20 @@ public class LoginActivity extends AppCompatActivity {
                 login(String.valueOf(email.getText()).trim(),String.valueOf(password.getText()).trim());
             }
         });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,SignupActivity.class));
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,ForgetPasswordActivity.class));
+            }
+        });
     }
 
     public void login(String usernameL, String passwordL) {
