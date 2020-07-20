@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:context=".Activity.OTPActivity">
+    tools:context=".Acivity.SignupOTPActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                                 android:textSize="17sp"
                                 android:textStyle="bold" />
                             <TextView
-                                android:id="@+id/f_otp_email"
+                                android:id="@+id/otp_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -92,7 +92,7 @@
                                 app:boxStrokeColor="@color/colorPrimaryDark">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/f_otp_edit"
+                                    android:id="@+id/otp_edit"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/password"
@@ -104,7 +104,7 @@
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <Button
-                                android:id="@+id/f_submitOTP"
+                                android:id="@+id/submitOTP"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
@@ -117,7 +117,7 @@
                                 android:theme="@style/AppTheme" />
 
                             <TextView
-                                android:id="@+id/f_resendOtp"
+                                android:id="@+id/resendOtp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"

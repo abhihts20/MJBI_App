@@ -22,4 +22,9 @@
         android:name="com.weshowedup.mjbi.ui.products.ProductsFragment"
         android:label="@string/menu_products"
         tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.weshowedup.mjbi.ui.cart.MyCartFragment"
+        tools:layout="@layout/fragment_cart"
+        android:label="@string/cart"/>
 </navigation>

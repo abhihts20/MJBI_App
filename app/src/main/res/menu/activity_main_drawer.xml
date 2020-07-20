@@ -33,15 +33,15 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_cart"
-                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:icon="@drawable/mycarticon"
                     android:title="@string/menu_cart" />
                 <item
                     android:id="@+id/nav_today_order"
-                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:icon="@drawable/todayorderion"
                     android:title="@string/menu_today_orders" />
                 <item
                     android:id="@+id/nav_myorder"
-                    android:icon="@drawable/shopping_basketcolor_24px"
+                    android:icon="@drawable/myodersicon"
                     android:title="@string/menu_my_orders" />
             </group>
         </menu>
@@ -49,14 +49,18 @@
     <item android:title="@string/additional">
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_contactus"
+                    android:title="@string/contactus"
+                    android:icon="@drawable/conactus"/>
 
                 <item
                     android:id="@+id/nav_term_and_condition"
-                    android:icon="@drawable/ic_term_and_conditions"
+                    android:icon="@drawable/tnc"
                     android:title="@string/tnc" />
                 <item
                     android:id="@+id/nav_feedback"
-                    android:icon="@drawable/ic_feedback"
+                    android:icon="@drawable/feedback"
                     android:title="@string/feedback" />
             </group>
         </menu>
